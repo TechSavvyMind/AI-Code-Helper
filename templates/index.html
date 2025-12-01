@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Helper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Code Helper</h1>
+            <p>Paste your code or upload a file to get explanations and refactoring suggestions.</p>
+        </header>
+
+        <main class="main-content">
+            <div class="code-input-section">
+                <div class="input-header">
+                    <h2>Your Code</h2>
+                    <input type="file" id="file-input" accept=".py,.js,.java,.c,.cpp,.cs,.html,.css,.rb,.php,.go,.rs,.swift,.kt" style="display: none;">
+                    <button id="upload-btn">Upload File</button>
+                </div>
+                <textarea id="code-input" placeholder="Paste your code here..."></textarea>
+                <div class="action-buttons">
+                    <button id="explain-btn">Explain Code</button>
+                    <button id="refactor-btn">Explain & Refactor</button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <div id="loader" class="loader" style="display: none;"></div>
+                
+                <div id="explanation-container" class="result-container" style="display: none;">
+                    <h2>Explanation</h2>
+                    <div id="explanation-output" class="output-box">
+                        <!-- Rich HTML from the agent will be injected here -->
+                    </div>
+
+                    <h2>Workflow Diagram</h2>
+                    <div id="diagram-output" class="output-box diagram-box">
+                        <!-- Mermaid diagram will be rendered here -->
+                    </div>
+
+                    <div id="chat-container">
+                        <h2>Chat with AI</h2>
+                        <div id="chat-messages"></div>
+                        <div id="chat-input-container">
+                            <input type="text" id="chat-input" placeholder="Ask a follow-up question...">
+                            <button id="send-chat-btn">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="refactor-container" class="result-container" style="display: none;">
+                    <h2>Refactored Code</h2>
+                    <button id="copy-btn">Copy Code</button>
+                    <pre><code id="refactor-output" class="language-python"></code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: false });
+        window.mermaid = mermaid; // Make it globally available for our script
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
