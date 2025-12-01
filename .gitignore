@@ -1,15 +1,13 @@
-# Virtual environment
-virtualenv/
-venv/
-*.pyc
-__pycache__/
-
 # Environment variables
 .env
 
 # Log files
-logs/*.log
+logs/
 
-# IDE settings
-.vscode/
-.idea/
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment (if you use one like 'venv' or '.venv')
+/venv/
+/.venv/
